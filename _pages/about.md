@@ -3,8 +3,6 @@ permalink: /about/
 title: "About"
 ---
 
-# About
-
 ### Cybersecurity professional | Penetration Tester | CTF Enthusiast
 
 #### Links:

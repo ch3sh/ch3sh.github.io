@@ -71,15 +71,12 @@ author:
 
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/"
+    - label: "Website"
+      url: "https://ch3s.github.io/"
+    - label: "HackTheBox"
+      url: "https://app.hackthebox.eu/users/26916"
+    - label: "TryHackMe"
+      url: "https://tryhackme.com/p/ch3sh1r3"
 
 defaults:
   # _posts

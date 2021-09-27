@@ -58,7 +58,7 @@ plugins:
 author:
   name   : "ch3sh1r3"
   avatar : "/assets/images/ch3s-photo.png"
-  bio    : "Pentesting and CTF Enthusiast"
+  bio    : "Pentester and CTF Enthusiast"
 
   links:
     - label: "Website"

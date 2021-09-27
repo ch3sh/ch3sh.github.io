@@ -58,9 +58,10 @@ plugins:
 author:
   name   : "ch3sh1r3"
   avatar : "/assets/images/ch3s-photo.png"
-  bio    : "Cybersecurity Professional\n
-            Pentester\n
-            CTF Enthusiast"
+  bio    : "Cybersecurity Professional"
+  bio    : "Pentester"
+  bio    : "CTF Enthusiast"
+  
   links:
     - label: "Website"
       url: "https://ch3s.github.io/"

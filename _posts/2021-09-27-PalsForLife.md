@@ -13,7 +13,7 @@ tags:
   - CTF
   - PalsForLife
 ---
-# Introduction
+## Introduction
 
 [PalsForLife](https://tryhackme.com/room/palsforlife) is a medium difficulty room on the TryHackMe platform. The room consists of a vulnerable Gitea application through which we can gain authenticated command execution to a Kubernetes cluster. Once inside the cluster, we can look around for the kubenetes service account secret token and eventually break out of the pod as root by creating a kubernetes pod of our own. 
 
@@ -250,7 +250,7 @@ Flag 2 can be found in the `/root` folder, which user `git` has access to.
 
 ---
 
-## Obtaining the service token
+### Obtaining the service token
 
 From the layout of the folders and behavior of the prompt, we can assume that we are within a kubernetes pod. Hence why the OpenSSH service running on port 31112 does not match the implementation running on port 22.
 
@@ -339,7 +339,7 @@ type: Opaque
 
 ---
 
-## Privilege Escalation via pod breakout
+### Privilege Escalation via pod breakout
 
 Using the service token, we should be able to create new pods in the cluster. In order to achieve this, I used the method at this link as reference: [https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216](https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216)
 

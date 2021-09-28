@@ -3,7 +3,7 @@ title: "Walkthrough: TryHackMe - PalsForLife"
 description: "A writeup for the PalsForLife room on TryHackMe"
 excerpt_separator: "<!--more-->"
 toc: true
-toc_label: "My Table of Contents"
+toc_label: "TryHackMe - PalsForLife"
 toc_icon: "cog"
 categories:
   - tryhackme

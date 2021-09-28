@@ -9,6 +9,8 @@ tags:
   - TryHackMe
   - CTF
 ---
+# Introduction
+
 [PalsForLife](https://tryhackme.com/room/palsforlife) is a medium difficulty room on the TryHackMe platform. The room consists of a vulnerable Gitea application through which we can gain authenticated command execution to a Kubernetes cluster. Once inside the cluster, we can look around for the kubenetes service account secret token and eventually break out of the pod as root by creating a kubernetes pod of our own. 
 
 ---

@@ -1,5 +1,4 @@
 ---
-{% seo %}
 permalink: /about/
 title: "About"
 ---

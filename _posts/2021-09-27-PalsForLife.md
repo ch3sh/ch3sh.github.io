@@ -1,5 +1,4 @@
 ---
-{% seo %}
 title: "Walkthrough: TryHackMe - PalsForLife"
 excerpt_separator: "<!--more-->"
 categories:

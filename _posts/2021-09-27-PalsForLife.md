@@ -400,7 +400,11 @@ Now we can switch to the created pod as follows:
 
 `kubectl exec -it attacker-pod -- /bin/sh`
 
-This will start a shell as root of the pod. Going into the `root` directory, we can find `root.txt` that contains the final flag: flag 4.
+This will start a shell as root of the pod. 
+
+#### Finding Flag 4
+
+Going into the `root` directory, we can find `root.txt` that contains the final flag: flag 4.
 
 ![flag4](/img/palsforlife/root_txt.png)
 

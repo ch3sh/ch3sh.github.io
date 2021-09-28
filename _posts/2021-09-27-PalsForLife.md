@@ -12,7 +12,6 @@ tags:
   - Writeup
   - TryHackMe
   - CTF
-  - PalsForLife
 ---
 ## Introduction
 

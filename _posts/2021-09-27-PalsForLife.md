@@ -26,11 +26,11 @@ We start off with by running nmap on the target,  scanning for all ports using t
 
 > *The services on the machine can take some time to start up, so give the machine a minute or two before starting the scan.*
 
-`sudo nmap -sS -sV -p- 10.10.61.38 -oN palsforlife.nmap`
+`sudo nmap -sS -sV -p- <target-ip> -oN palsforlife.nmap`
 
 ```
-$ sudo nmap -sS -sV -p- 10.10.61.38 -oN palsforlife.nmap
-Nmap scan report for 10.10.61.38
+$ sudo nmap -sS -sV -p- <target-ip> -oN palsforlife.nmap
+Nmap scan report for <target-ip>
 Host is up (0.22s latency).
 Not shown: 65529 closed tcp ports (reset)
 PORT      STATE SERVICE           VERSION

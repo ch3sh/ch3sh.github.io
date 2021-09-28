@@ -5,6 +5,7 @@ excerpt_separator: "<!--more-->"
 toc: true
 toc_label: "TryHackMe - PalsForLife"
 toc_icon: "stream"
+toc_sticky: false
 categories:
   - tryhackme
 tags:

@@ -2,7 +2,7 @@
 title: "Walkthrough: TryHackMe - PalsForLife"
 excerpt_separator: "<!--more-->"
 categories:
-  - CTF Writeup
+  - tryhackme
 tags:
   - Writeup
   - TryHackMe

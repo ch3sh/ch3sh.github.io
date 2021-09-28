@@ -1,5 +1,6 @@
 ---
 title: "Walkthrough: TryHackMe - PalsForLife"
+description: "A writeup for the PalsForLife room on TryHackMe"
 excerpt_separator: "<!--more-->"
 categories:
   - tryhackme
@@ -9,13 +10,15 @@ tags:
   - CTF
   - PalsForLife
 ---
+# Introduction
+
 [PalsForLife](https://tryhackme.com/room/palsforlife) is a medium difficulty room on the TryHackMe platform. The room consists of a vulnerable Gitea application through which we can gain authenticated command execution to a Kubernetes cluster. Once inside the cluster, we can look around for the kubenetes service account secret token and eventually break out of the pod as root by creating a kubernetes pod of our own. 
 
 ---
 
 ## Recon
 
-We start off with by running nmap on the target,  scanning for all ports using the stealth scan option `-sS` and performing service and version detection `sV`.
+We start off with by running nmap on the target,  scanning for all ports using the stealth scan option `-sS` and performing service and version detection `-sV`.
 
 > *The services on the machine can take some time to start up, so give the machine a minute or two before starting the scan.*
 

@@ -1,5 +1,6 @@
 ---
 title: "Walkthrough: TryHackMe - PalsForLife"
+description: "A writeup for the PalsForLife room on TryHackMe"
 excerpt_separator: "<!--more-->"
 categories:
   - tryhackme

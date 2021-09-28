@@ -15,7 +15,7 @@ tags:
 
 ## Recon
 
-We start off with by running nmap on the target,  scanning for all ports using the stealth scan option `-sS` and performing service and version detection `sV`.
+We start off with by running nmap on the target,  scanning for all ports using the stealth scan option `-sS` and performing service and version detection `-sV`.
 
 > *The services on the machine can take some time to start up, so give the machine a minute or two before starting the scan.*
 

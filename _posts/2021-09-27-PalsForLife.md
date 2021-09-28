@@ -4,7 +4,7 @@ description: "A writeup for the PalsForLife room on TryHackMe"
 excerpt_separator: "<!--more-->"
 toc: true
 toc_label: "TryHackMe - PalsForLife"
-toc_icon: "cog"
+toc_icon: "stream"
 categories:
   - tryhackme
 tags:

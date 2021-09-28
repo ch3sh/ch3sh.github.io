@@ -1,5 +1,6 @@
 ---
 title: "Walkthrough: TryHackMe - PalsForLife"
+description: "Walkthrough: TryHackMe - PalsForLife - CTF"
 excerpt_separator: "<!--more-->"
 categories:
   - CTF Writeup

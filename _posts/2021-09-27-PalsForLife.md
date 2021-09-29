@@ -1,11 +1,11 @@
 ---
-title: "Walkthrough: TryHackMe - PalsForLife"
+title: "TryHackMe: PalsForLife - Walkthrough"
 description: "A writeup for the PalsForLife room on TryHackMe"
 excerpt_separator: "<!--more-->"
 toc: true
 toc_label: "TryHackMe - PalsForLife"
 toc_icon: "stream"
-toc_sticky: false
+toc_sticky: true
 categories:
   - tryhackme
 tags:

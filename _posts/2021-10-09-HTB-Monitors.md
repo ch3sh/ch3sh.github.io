@@ -129,8 +129,6 @@ When we attempt the LFI, we obtain the contents of the /etc/passwd file by sendi
 
 ![passwd](/img/monitors/passwd.png)
 
-> While the RFI does work, as of the writing of this writeup, it appears that php files are not getting executing when requested. I will update this writeup accordingly if a method to leverage the RFI is found.
-
 ### Reading wp-config using LFI
 
 Using the LFI, we can now search for some [common files](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/File%20Inclusion) which could be useful for us. Since this is a wordpress installation, we can access the `wp-config.php` file by browsing to the following URL:

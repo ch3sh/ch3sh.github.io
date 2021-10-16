@@ -67,7 +67,7 @@ author:
       url: "https://app.hackthebox.eu/users/26916"
     - label: "TryHackMe"
       url: "https://tryhackme.com/p/ch3sh1r3"
-    - label: "TryHackMe"
+    - label: "Email"
       url: "mailto:the_ch3s@protonmail.com"
 
 footer:

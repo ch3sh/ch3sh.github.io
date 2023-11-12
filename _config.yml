@@ -56,7 +56,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "ch3sh1r3 | Akshay Peter"
+  name   : "ch3sh1r3"
   avatar : "/assets/images/ch3s-photo.png"
   bio    : "Pentester and CTF Enthusiast"
 

@@ -56,7 +56,7 @@ plugins:
   - jekyll-include-cache
 
 author:
-  name   : "ch3sh1r3"
+  name   : "ch3sh1r3 | Akshay Peter"
   avatar : "/assets/images/ch3s-photo.png"
   bio    : "Pentester and CTF Enthusiast"
 
@@ -69,6 +69,8 @@ author:
       url: "https://tryhackme.com/p/ch3sh1r3"
     - label: "Email"
       url: "mailto:the_ch3s@protonmail.com"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/akshaypeterb/"
 
 footer:
   links:
@@ -78,6 +80,8 @@ footer:
       url: "https://app.hackthebox.eu/users/26916"
     - label: "TryHackMe"
       url: "https://tryhackme.com/p/ch3sh1r3"
+    - label: "LinkedIn"
+      url: "https://www.linkedin.com/in/akshaypeterb/"
 
 defaults:
   # _posts
